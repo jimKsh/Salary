@@ -3,7 +3,57 @@
     <head>
         <title>משכורת</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                width: 100%;
+            }
+
+            body {
+                background-color: brown;
+                direction: rtl;
+                color: white;
+            }
+
+            h1 {
+                width: 100%;
+                text-align: center;
+            }
+
+            .day {
+                margin: 5px;
+            }
+
+            .dayNumber {
+                display: inline-block;
+                width: 20px;
+            }
+
+            .dayStart, .dayEnd {
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+            }
+
+            .dayTotal {
+                display: inline-block;
+                width: 30px;
+                text-align: center;
+            }
+
+            input[type=time] {
+                width: 72px;
+            }
+
+            .alert {
+                display: inline-block;
+                width: 27px;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <h1>חישוב משכורת</h1>
@@ -18,6 +68,41 @@
             <span>משכורת</span>
             <input id="salary" type="number" disabled>
         </div>
-        <script src="code.js"></script>
+
+        <script>
+            
+            let formCode = '';
+            for (i=0; i<31; i++){
+                formCode += '<div class="day" id="day-'+(i+1)+'">';
+                formCode += '<span class="dayNumber">'+(i+1)+'</span>';
+                formCode += '<span class="dayStart">מ:</span><input class="startTime" "data-day="'+(i+1)+'" type="time" onchange="checkDates('+(i+1)+')">';
+                formCode += '<span class="dayEnd">עד:</span>   <input class="endTime" data-day="'+(i+1)+'" type="time" onchange="checkDates('+(i+1)+')">';
+                formCode += '<span class="dayTotal">סה"כ</span>   <input class="totalTime" data-day="'+(i+1)+'" type="time" disabled>';
+                formCode += '<span class="alert"></span>';
+                formCode += '</div>';
+            }
+            document.getElementById('myForm').innerHTML = formCode;
+
+            function checkDates(day){
+                let startTime = document.getElementById('day-'+day).querySelector('input.startTime').value;
+                let endTime = document.getElementById('day-'+day).querySelector('input.endTime').value;
+                if ( startTime && endTime ){
+                    if ( startTime > endTime ) {
+                        document.getElementById('day-'+day).querySelector('.alert').innerHTML = "!!!!";
+                    }
+                    else {
+                        document.getElementById('day-'+day).querySelector('.alert').innerHTML = "";
+                        let startTimeHour = parseInt(startTime.slice(0, 2));
+                        let startTimeMin = parseInt(startTime.slice(3, 5));
+                        let endTimeHour = parseInt(endTime.slice(0, 2));
+                        let endTimeMin = parseInt(endTime.slice(3, 5));
+                        let timeDiff = (endTimeHour*60+endTimeMin)-(startTimeHour*60+startTimeMin);
+                        let timeDiffHour = (parseInt(timeDiff/60)>9)?parseInt(timeDiff/60):'0'+parseInt(timeDiff/60);
+                        let timeDiffMin = ((timeDiff%60)>9)?(timeDiff%60):'0'+(timeDiff%60);
+                        document.getElementById('day-'+day).querySelector('input.totalTime').value = timeDiffHour+':'+timeDiffMin;
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
