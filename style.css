@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+}
+
+body {
+    background-color: brown;
+    direction: rtl;
+    color: white;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.day {
+    margin: 5px;
+}
+
+.dayNumber {
+    display: inline-block;
+    width: 20px;
+}
+
+.dayStart, .dayEnd {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
+.dayTotal {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+input[type=time] {
+    width: 72px;
+}
+
+.alert {
+    display: inline-block;
+    width: 27px;
+    text-align: center;
+}
