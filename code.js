@@ -6,7 +6,6 @@ for (i=0; i<31; i++){
     formCode += '<span class="dayStart">מ:</span><input class="startTime" "data-day="'+(i+1)+'" type="time" onchange="checkDates('+(i+1)+')">';
     formCode += '<span class="dayEnd">עד:</span>   <input class="endTime" data-day="'+(i+1)+'" type="time" onchange="checkDates('+(i+1)+')">';
     formCode += '<span class="dayTotal">סה"כ</span>   <input class="totalTime" data-day="'+(i+1)+'" disabled>';
-    formCode += '<span class="alert"></span>';
     formCode += '</div>';
 }
 document.getElementById('myForm').innerHTML = formCode;
@@ -17,12 +16,10 @@ function checkDates(day){
     let endTime = document.getElementById('day-'+day).querySelector('input.endTime').value;
     if ( startTime && endTime ){
         if ( startTime > endTime ) {
-            document.getElementById('day-'+day).querySelector('.alert').innerHTML = "!!!!";
             document.getElementById('day-'+day).querySelector('input.totalTime').value = "";
             document.getElementById('day-'+day).classList.add('invalidDates');
         }
         else {
-            document.getElementById('day-'+day).querySelector('.alert').innerHTML = "";
             document.getElementById('day-'+day).classList.remove('invalidDates');
             let startTimeHour = parseInt(startTime.slice(0, 2));
             let startTimeMin = parseInt(startTime.slice(3, 5));

@@ -25,7 +25,7 @@ div#salaryForm,
 button#calculate, 
 div#salaryResult {
     display: block;
-    width: 351px;
+    width: 340px;
     margin: 20px auto;
     text-align: center;
 }
@@ -37,11 +37,11 @@ div#salaryResult > input {
     text-align: center;
     font-size: 23px;
     display: block;
-    width: 100%
+    width: 100%;
 }
 
+div#salaryForm > span,
 div#salaryResult > span {
-    color: LawnGreen;
     font-weight: 700;
 }
 
@@ -73,13 +73,6 @@ div#salaryResult > span {
 
 input {
     width: 72px;
-}
-
-.alert {
-    display: inline-block;
-    width: 27px;
-    text-align: center;
-    color: red;
 }
 
 button#calculate {
