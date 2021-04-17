@@ -12,9 +12,29 @@ body {
     color: white;
 }
 
-h1 {
+h1, h2 {
     width: 100%;
     text-align: center;
+}
+
+#myForm,
+div#salaryForm,
+button#calculate, 
+div#salaryResult {
+    display: block;
+    width: 351px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+div#salaryForm > span,
+div#salaryForm > input,
+div#salaryResult > span,
+div#salaryResult > input {
+    text-align: center;
+    font-size: 23px;
+    display: block;
+    width: 100%
 }
 
 .day {
@@ -46,4 +66,9 @@ input[type=time] {
     display: inline-block;
     width: 27px;
     text-align: center;
+}
+
+button#calculate {
+    font-size: 25px;
+    border-radius: 5px;
 }
