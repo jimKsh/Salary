@@ -61,13 +61,13 @@ div#salaryResult > span {
 
 .dayStart, .dayEnd {
     display: inline-block;
-    width: 22px;
+    width: 26px;
     text-align: center;
 }
 
 .dayTotal {
     display: inline-block;
-    width: 32px;
+    width: 38px;
     text-align: center;
 }
 
