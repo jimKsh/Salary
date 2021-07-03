@@ -6,4 +6,5 @@ audio
 # Local development
 *.env
 *.dev
+*.pptx
 .DS_Store
