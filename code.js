@@ -31,7 +31,7 @@ function checkDates(day){
             document.getElementById('day-'+day).querySelector('input.totalTime').value = timeDiffHour+':'+timeDiffMin;
         }
     }
-}
+}o
 
 // calculate salary
 function calculate(){
