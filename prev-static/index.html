@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <title>חישוב משכורת</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="favicon.ico">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>חישוב משכורת</h1>
+        <h2>לפי שעות עבודה ושכר לפי שעה</h2>
+
+        <div id="myForm"></div>
+
+        <div id="salaryForm">
+            <span>שכר לפי שעה</span>
+            <input id="salaryByHour" type="number">
+        </div>
+
+        <button id="calculate" onclick="calculate()">חשב משכורת</button>
+
+        <div id="salaryResult">
+            <span>משכורת</span>
+            <input id="salary" disabled>
+        </div>
+
+        <script src="code.js"></script>
+    </body>
+</html>
