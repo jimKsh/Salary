@@ -6,14 +6,11 @@ import History from '../History/History'
 import './App.css';
 
 function App() {
-  const location = useLocation();
-  console.log(location.pathname);
-
   return (
     <Routes>
-      <Route path='/' element={<Homepage />}></Route>
-      <Route path='/calculate' element={<Calculate />}></Route>
-      <Route path='/history' element={<History />}></Route>
+      <Route path='/Salary' element={<Homepage />}></Route>
+      <Route path='/Salary/calculate' element={<Calculate />}></Route>
+      <Route path='/Salary/history' element={<History />}></Route>
     </Routes>
   );
 }

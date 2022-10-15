@@ -57,7 +57,7 @@ const Calculate = (props) => {
 
     return (
     <div className={classes['container']}>
-        <img src={beforeIcon} alt="back" className={classes['back-btn']} onClick={()=>{navigate('/')}}/>
+        <img src={beforeIcon} alt="back" className={classes['back-btn']} onClick={()=>{navigate('/Salary')}}/>
         <h2 className={classes['title']}>חישוב משכורת</h2>
         {!!data.length ?
         <table className={classes['table']}>

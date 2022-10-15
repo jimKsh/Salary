@@ -9,8 +9,8 @@ const Homepage = (props) => {
         <h1>חישוב משכורת</h1>
         <h3>לפי שעות עבודה ושכר לפי שעה</h3>
         <div className={classes["buttons-container"]}>
-            <button onClick={()=>{ navigate('/calculate')}}>חישוב</button>
-            <button onClick={()=>{ navigate('/history')}}>היסטוריה</button>
+            <button onClick={()=>{ navigate('/Salary/calculate')}}>חישוב</button>
+            <button onClick={()=>{ navigate('/Salary/history')}}>היסטוריה</button>
         </div>
     </div>)
 }
