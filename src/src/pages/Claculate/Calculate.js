@@ -19,8 +19,6 @@ const Calculate = (props) => {
     const navigate = useNavigate()
 
     const addShiftSubmitHandler = (newShift) => {
-        console.log(newShift);
-
         // check day already added
         const sameDay = data.filter((s) => s.day === newShift.day)
         if (sameDay.length) {
@@ -50,7 +48,6 @@ const Calculate = (props) => {
 
     const saveMonth = () => {
         const monthName = prompt('Month Name');
-        console.log(`Save month name as ${monthName}`)
         addNewMonth({name: monthName, shifts: data, workTime: totalDiff(), salary: totalDiff()/60*30, salaryRate})
     }
 

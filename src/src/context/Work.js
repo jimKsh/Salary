@@ -21,14 +21,10 @@ const WorkProvider = (props)=>{
     const [months, setMonths] = useState(loadData() || {})
 
     useEffect(()=>{
-        console.log('months: ', months)
         saveData(months)
     }, [months])
 
-    console.log(months);
-
     const addNewMonth = (month) => {
-        console.log(`addNewMonth ${month.name}`)
         setMonths((prev)=>{
             const updated = { ...prev }
             updated[month.name]={
@@ -37,17 +33,14 @@ const WorkProvider = (props)=>{
                 salary: month.salary,
                 salaryRate: month.salaryRate,
             }
-            console.log('updated: ', updated)
             return updated
         })
     }
 
     const deleteMonth = (month) => {
-        console.log(`deleteMonth ${month}`)
         setMonths((prev)=>{
             const updated = { ...prev }
             delete updated[month]
-            console.log('updated: ', updated)
             return updated
         })
     }
