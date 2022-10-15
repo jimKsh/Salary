@@ -12,16 +12,17 @@ import classes from './Calculate.module.css';
 
 
 const Calculate = (props) => {
-    const [addMode, setAddMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
     const [data, setData] = useState([])
     const [salaryRate, setSalaryRate] = useState(0)
+    const [editShiftData, setEditShiftData] = useState({})
     const { addNewMonth } = useContext(Work)
     const navigate = useNavigate()
 
     const addShiftSubmitHandler = (newShift) => {
         // check day already added
-        const sameDay = data.filter((s) => s.day === newShift.day)
-        if (sameDay.length) {
+        const sameDay = data.findIndex((s) => s.day === newShift.day)
+        if (sameDay !== -1 && editShiftData.day === undefined) {
             return 'קיימת משמרת בתאריך זה';
         }
 
@@ -29,10 +30,19 @@ const Calculate = (props) => {
         newShift['duration'] = minutesToDuration(newShift['diff'])
 
         setData(prev=>{
-            const newData = [...prev, newShift];
-            return newData.sort((a, b) => (a.day - b.day))
+            // new shift
+            if (editShiftData.day === undefined) {
+                const newData = [...prev, newShift];
+                return newData.sort((a, b) => (a.day - b.day))
+            }
+
+            // update shift
+            const newData = [...prev];
+            const sameDay = newData.findIndex((s) => s.day === editShiftData.day)
+            newData[sameDay] = newShift
+            return newData
         });
-        setAddMode(false);
+        setEditMode(false);
         return '';
     }
 
@@ -46,19 +56,38 @@ const Calculate = (props) => {
         }
     }
 
-    const saveMonth = () => {
+    const saveMonthHandler = () => {
         const monthName = prompt('Month Name');
-        addNewMonth({name: monthName, shifts: data, workTime: totalDiff(), salary: totalDiff()/60*30, salaryRate})
+        addNewMonth({name: monthName, shifts: data, workTime: totalDiff(), salary: (totalDiff()/60*30).toFixed(2), salaryRate})
     }
 
     const salaryRateChangeHandler = (e) => {
         setSalaryRate(e.target.value)
     }
 
+    const editShiftHandler = (day) => {
+        const sameDay = data.filter((s) => s.day === day)[0]
+        console.log(`editShift: `, sameDay)
+        setEditShiftData(sameDay)
+        setEditMode(true)
+    }
+
+    const deleteShiftHandler = (day) => {
+        if (window.confirm('האם למחוק את המשמרת? לא יהיה ניתן לשחזר פעולה זו')) {
+            setData(prev=> prev.filter((s)=> (s.day !== day)) )
+        }
+    }
+
+    const closeAddFormHandler = () => {
+        setEditMode(false)
+        setEditShiftData({})
+    }
+
     return (
     <div className={classes['container']}>
         <img src={beforeIcon} alt="back" className={classes['back-btn']} onClick={()=>{navigate('/Salary')}}/>
         <h2 className={classes['title']}>חישוב משכורת</h2>
+
         {!!data.length ?
         <table className={classes['table']}>
             <thead>
@@ -67,6 +96,7 @@ const Calculate = (props) => {
                     <th>התחלה</th>
                     <th>סיום</th>
                     <th>משך</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -77,27 +107,30 @@ const Calculate = (props) => {
                     <td>{d.start}</td>
                     <td>{d.end}</td>
                     <td>{d.duration}</td>
-                    <td><img src={editIcon} width={18} height={18} alt="edit"/></td>
+                    <td><img src={editIcon} width={18} height={18} alt="edit" onClick={()=>{editShiftHandler(d.day)}}/></td>
+                    <td><img src={deleteIcon} width={18} height={18} alt="edit" onClick={()=>{deleteShiftHandler(d.day)}}/></td>
                 </tr>)}
             </tbody>
         </table>:
         <div className={classes['no-data']}>נא להוסיף משמרת</div>}
-        <div className={classes['input-container']}>
-            <label>שכר לשעה</label>
-            <input type="number" value={salaryRate} onChange={salaryRateChangeHandler}/>
-        </div>
-        { addMode ?
-        <AddShidtForm back={setAddMode} onSubmit={addShiftSubmitHandler}/> :
+
+        <form className={classes['input-container']} onSubmit={(e)=>e.preventDefault()}>
+                <label>שכר לשעה</label>
+                <input type="number" value={salaryRate} onChange={salaryRateChangeHandler}/>
+        </form>
+
+        { editMode ?
+        <AddShidtForm back={closeAddFormHandler} onSubmit={addShiftSubmitHandler} editData={editShiftData}/> :
         <>
-            <button className={classes['add-btn']} onClick={()=>{setAddMode(true)}}>הוספת משמרת <img src={addIcon} width={18} height={18} alt="add"/></button>
+            <button className={classes['add-btn']} onClick={()=>{setEditMode(true)}}>הוספת משמרת <img src={addIcon} width={18} height={18} alt="add"/></button>
             {!!data.length && <button className={classes['delete-btn']} onClick={clearAll}>נקה הכל <img src={deleteIcon} width={18} height={18} alt="delete"/></button>}
-            {!!data.length && <button className={classes['save-btn']} onClick={saveMonth}>שמור <img src={saveIcon} width={18} height={18} alt="save"/></button>}
+            {!!data.length && <button className={classes['save-btn']} onClick={saveMonthHandler}>שמור <img src={saveIcon} width={18} height={18} alt="save"/></button>}
         </>
         }
         {!!data.length && 
         <div className={classes['total']}>
             <div>שעות חודשיות {minutesToDuration(totalDiff())}</div>
-            <div>שכר חודשי {totalDiff()/60*salaryRate} ש"ח</div>
+            <div>שכר חודשי {(totalDiff()/60*salaryRate).toFixed(2)} ש"ח</div>
         </div>}
     </div>)
 }

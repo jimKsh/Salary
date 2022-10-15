@@ -13,7 +13,6 @@ const History = (props) => {
     const navigate = useNavigate();
     const hasData = !!Object.keys(months).length;
 
-
     const clearAll = () => {
         if (window.confirm('האם לנקות את כל הרשימה? לא יהיה ניתן לשחזר פעולה זו')) {
             deleteAll();
@@ -53,7 +52,7 @@ const History = (props) => {
             </tbody>
         </table>:
         <div className={classes['no-data']}>אין מידע שמור</div>}
-        <button className={classes['add-btn']} onClick={()=>{navigate('/calculate')}}>הוספת חודש <img src={addIcon} width={18} height={18} alt="add"/></button>
+        <button className={classes['add-btn']} onClick={()=>{navigate('/Salary/calculate')}}>הוספת חודש <img src={addIcon} width={18} height={18} alt="add"/></button>
         { hasData &&<button className={classes['delete-btn']} onClick={clearAll}>נקה הכל <img src={deleteIcon} width={18} height={18} alt="delete"/></button>}
     </div>)
 }

@@ -9,11 +9,12 @@ const AddShidtForm = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const day = parseInt(dayInput.current.value);
-    const start = startInput.current.value;
-    const end = endInput.current.value;
+    const start = startInput.current.value
+    const end = endInput.current.value
     
-    if (day === '' || start === '' || end === '') {
+    if (day === '' || day < 1 || day > 31 || start === '' || end === '') {
       setInvalidAlert('אנא הכנס נתונים');
       return;
     }
@@ -24,7 +25,7 @@ const AddShidtForm = (props) => {
     }
     
     const res = props.onSubmit({
-      day, start, end
+      day: day, start: start, end: end
     });
 
     if (res !== '') {
@@ -44,15 +45,15 @@ const AddShidtForm = (props) => {
       {invalidAlert !== '' && <span className={classes['alert']}>{invalidAlert}</span>}
       <div className={classes["input-container"]}>
         <label>יום</label>
-        <input type="number" ref={dayInput}/>
+        <input type="number" defaultValue={props.editData?.day} ref={dayInput}/>
       </div>
       <div className={classes["input-container"]}>
         <label>שעת התחלה</label>
-        <input type="time" ref={startInput}/>
+        <input type="time" defaultValue={props.editData?.start} ref={startInput}/>
       </div>
       <div className={classes["input-container"]}>
         <label>שעת סיום</label>
-        <input type="time" ref={endInput}/>
+        <input type="time" defaultValue={props.editData?.end} ref={endInput}/>
       </div>
       <button type="submit" className={classes["add-btn"]}>
         שמור
