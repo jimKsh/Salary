@@ -11,7 +11,7 @@ import classes from './History.module.css';
 const History = (props) => {
     const { months, deleteMonth, deleteAll } = useContext(Work)
     const navigate = useNavigate();
-    const hasData = !!Object.keys(months).length;
+    const hasData = !!months.length;
 
     const clearAll = () => {
         if (window.confirm('האם לנקות את כל הרשימה? לא יהיה ניתן לשחזר פעולה זו')) {
@@ -41,13 +41,13 @@ const History = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {Object.keys(months).map((k) => 
-                <tr key={k}>
-                    <td>{k}</td>
-                    <td>{minutesToDuration(months[k].workTime)}</td>
-                    <td>{months[k].salary} ש"ח</td>
-                    <td><img src={editIcon} width={18} height={18} alt="edit"/></td>
-                    <td><img src={deleteIcon} width={18} height={18} onClick={()=>{deleteMonthHandler(k)}} alt="delete"/></td>
+                {months.map((m) => 
+                <tr key={m.id}>
+                    <td>{m.name}</td>
+                    <td>{minutesToDuration(m.workTime)}</td>
+                    <td>{m.salary} ש"ח</td>
+                    <td><img src={editIcon} width={18} height={18} alt="edit" onClick={()=>{navigate(`/Salary/calculate?${m.id}`)}}/></td>
+                    <td><img src={deleteIcon} width={18} height={18} onClick={()=>{deleteMonthHandler(m.id)}} alt="delete"/></td>
                 </tr>)}
             </tbody>
         </table>:
