@@ -8,3 +8,5 @@ audio
 *.dev
 *.pptx
 .DS_Store
+
+.idea
