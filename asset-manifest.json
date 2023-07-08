@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Salary/static/css/main.284299dd.css",
-    "main.js": "/Salary/static/js/main.a1a4e830.js",
+    "main.css": "/Salary/static/css/main.406cc805.css",
+    "main.js": "/Salary/static/js/main.8f661466.js",
     "index.html": "/Salary/index.html",
     "static/media/save.svg": "/Salary/static/media/save.8be95cccb7a8e5b41be23a50ba148330.svg",
     "static/media/delete_forever.svg": "/Salary/static/media/delete_forever.9df27139b4fbdd669040149d9364e085.svg",
-    "static/media/edit.svg": "/Salary/static/media/edit.643f3226d980a4d7c91abf265a0b1746.svg",
+    "static/media/edit.svg": "/Salary/static/media/edit.992c2da0704b6bb1958cda2874a6166a.svg",
     "static/media/navigate_before.svg": "/Salary/static/media/navigate_before.a64161d34ecbce6325db0c90bf07f718.svg",
     "static/media/add.svg": "/Salary/static/media/add.940cf35bab8e809a312e95827ebdd6be.svg",
-    "main.284299dd.css.map": "/Salary/static/css/main.284299dd.css.map",
-    "main.a1a4e830.js.map": "/Salary/static/js/main.a1a4e830.js.map"
+    "main.406cc805.css.map": "/Salary/static/css/main.406cc805.css.map",
+    "main.8f661466.js.map": "/Salary/static/js/main.8f661466.js.map"
   },
   "entrypoints": [
-    "static/css/main.284299dd.css",
-    "static/js/main.a1a4e830.js"
+    "static/css/main.406cc805.css",
+    "static/js/main.8f661466.js"
   ]
 }
