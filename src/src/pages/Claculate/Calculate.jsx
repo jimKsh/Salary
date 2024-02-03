@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { hoursDiff, minutesToDuration } from '../../utils/timeDiff'
+import { hoursDiff, minutesToDuration } from '../../utils/timeDiff.jsx'
 import editIcon from '../../assets/edit.svg'
 import addIcon from '../../assets/add.svg'
 import deleteIcon from '../../assets/delete_forever.svg'
 import saveIcon from '../../assets/save.svg'
 import beforeIcon from '../../assets/navigate_before.svg'
-import AddShidtForm from "../../components/AddShiftForm/AddShidtForm";
-import Work from "../../context/Work";
+import AddShidtForm from "../../components/AddShiftForm/AddShidtForm.jsx";
+import Work from "../../context/Work.jsx";
 import classes from './Calculate.module.css';
 
 
