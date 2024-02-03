@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Work from "../../context/Work";
-import { minutesToDuration } from "../../utils/timeDiff";
+import Work from "../../context/Work.jsx";
+import { minutesToDuration } from "../../utils/timeDiff.jsx";
 import editIcon from '../../assets/edit.svg'
 import addIcon from '../../assets/add.svg'
 import deleteIcon from '../../assets/delete_forever.svg'
